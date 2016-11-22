@@ -26,7 +26,7 @@ Loads Polymer element and behavior documentation using
 documentation page including demos (if available).
 -->
 
-<dom-module id="swim-component-page">
+<dom-module id="iron-component-page">
   <template>
     <style>
       :host {
@@ -229,7 +229,7 @@ documentation page including demos (if available).
               <h2><span>[[active]]</span> <span class="version" hidden$="[[!version]]">[[version]]</span></h2>
             </div>
             <iron-doc-viewer prefix="[[_fragmentPrefix]]" id="viewer" descriptor="{{_activeDescriptor}}"
-                             on-iron-doc-viewer-component-selected="_handleComponentSelectedEvent"></iron-doc-viewer>
+              on-iron-doc-viewer-component-selected="_handleComponentSelectedEvent"></iron-doc-viewer>
             <div id="nodocs" hidden$="[[_activeDescriptor]]" class="no-docs">
               No documentation found.
             </div>
@@ -255,7 +255,7 @@ documentation page including demos (if available).
       }
 
       Polymer({
-        is: 'swim-component-page',
+        is: 'iron-component-page',
 
         properties: {
           /**
@@ -732,8 +732,8 @@ documentation page including demos (if available).
         marshal: function() {
           var jsonText = JSON.stringify(this.docElements || [], null, '  ');
           return '<' + this.is + '>\n' +
-            jsonText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '\n' +
-            '</' + this.is + '>';
+                 jsonText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '\n' +
+                 '</' + this.is + '>';
         },
 
         _demoView: function(path) {
