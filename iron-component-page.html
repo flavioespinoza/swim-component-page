@@ -26,7 +26,7 @@ Loads Polymer element and behavior documentation using
 documentation page including demos (if available).
 -->
 
-<dom-module id="swim-component-page">
+<dom-module id="iron-component-page">
   <template>
     <style>
       :host {
@@ -204,18 +204,23 @@ documentation page including demos (if available).
 
     <paper-header-panel id="headerPanel" mode="[[scrollMode]]">
       <paper-toolbar catalog-hidden>
-
+        <div class="docs-header">
+          <!-- TODO: Replace with paper-dropdown-menu when available -->
+          <select id="active" value="[[active]]" on-change="_handleMenuItemSelected">
+            <template is="dom-repeat" items="[[docElements]]">
+              <option value="[[item.is]]">[[item.is]]</option>
+            </template>
+            <template is="dom-repeat" items="[[docBehaviors]]">
+              <option value="[[item.is]]">[[item.is]]</option>
+            </template>
+          </select>
+        </div>
         <iron-selector attr-for-selected="view" selected="{{view}}" id="links" hidden$="[[!docDemos.length]]">
+          <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
 
-          <div class="docs-header">
+          <a view="[[_demoView(docDemos.0.path)]]"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></a>
 
-            <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
-
-            <a view="[[_demoView(docDemos.0.path)]]"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></a>
-
-          </div>
         </iron-selector>
-
       </paper-toolbar>
       <div id="content">
         <iron-selector id="view" selected="[[_viewType(view)]]" attr-for-selected="id">
@@ -224,7 +229,7 @@ documentation page including demos (if available).
               <h2><span>[[active]]</span> <span class="version" hidden$="[[!version]]">[[version]]</span></h2>
             </div>
             <iron-doc-viewer prefix="[[_fragmentPrefix]]" id="viewer" descriptor="{{_activeDescriptor}}"
-                             on-iron-doc-viewer-component-selected="_handleComponentSelectedEvent"></iron-doc-viewer>
+              on-iron-doc-viewer-component-selected="_handleComponentSelectedEvent"></iron-doc-viewer>
             <div id="nodocs" hidden$="[[_activeDescriptor]]" class="no-docs">
               No documentation found.
             </div>
@@ -249,12 +254,8 @@ documentation page including demos (if available).
         return url.match(/^(.*?)\/?([^\/]+\.[^\/]+)?$/)[1] + '/';
       }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1eca5e098e6eed626c1767b2b8c1f32d2aa9124b
       Polymer({
-        is: 'swim-component-page',
+        is: 'iron-component-page',
 
         properties: {
           /**
@@ -628,12 +629,6 @@ documentation page including demos (if available).
             this.active = this._getDefaultActive();
             return;
           }
-<<<<<<< HEAD
-          if (!this.$.active) {
-            this.$.active = '';
-          }
-=======
->>>>>>> 1eca5e098e6eed626c1767b2b8c1f32d2aa9124b
           this.async(function() { this.$.active.value = active; });
           if (analyzer && analyzer.elementsByTagName) {
             this.$.headerPanel.scroller.scrollTop = 0;
@@ -737,8 +732,8 @@ documentation page including demos (if available).
         marshal: function() {
           var jsonText = JSON.stringify(this.docElements || [], null, '  ');
           return '<' + this.is + '>\n' +
-            jsonText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '\n' +
-            '</' + this.is + '>';
+                 jsonText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '\n' +
+                 '</' + this.is + '>';
         },
 
         _demoView: function(path) {
