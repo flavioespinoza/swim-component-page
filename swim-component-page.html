@@ -249,10 +249,6 @@ documentation page including demos (if available).
         return url.match(/^(.*?)\/?([^\/]+\.[^\/]+)?$/)[1] + '/';
       }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1eca5e098e6eed626c1767b2b8c1f32d2aa9124b
       Polymer({
         is: 'swim-component-page',
 
@@ -628,12 +624,9 @@ documentation page including demos (if available).
             this.active = this._getDefaultActive();
             return;
           }
-<<<<<<< HEAD
           if (!this.$.active) {
             this.$.active = '';
           }
-=======
->>>>>>> 1eca5e098e6eed626c1767b2b8c1f32d2aa9124b
           this.async(function() { this.$.active.value = active; });
           if (analyzer && analyzer.elementsByTagName) {
             this.$.headerPanel.scroller.scrollTop = 0;
