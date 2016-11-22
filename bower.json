@@ -1,8 +1,8 @@
 {
-  "name": "iron-component-page",
+  "name": "swim-component-page",
   "description": "Turns a raw element definition into beautiful documentation",
   "authors": [
-    "The Polymer Authors"
+    "flavio@swim.it"
   ],
   "keywords": [
     "web-components",
@@ -11,9 +11,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/PolymerElements/iron-component-page.git"
+    "url": "git://github.com/swimit/swim-component-page.git"
   },
-  "version": "1.1.7",
+  "version": "1.1.8",
   "private": true,
   "license": "http://polymer.github.io/LICENSE.txt",
   "dependencies": {
