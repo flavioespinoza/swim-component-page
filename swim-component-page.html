@@ -187,12 +187,13 @@ documentation page including demos (if available).
       .docs-header {
         @apply(--layout-flex);
       }
+
     </style>
 
     <hydrolysis-analyzer id="analyzer" src="[[_srcUrl]]" transitive="[[transitive]]" clean analyzer="{{_hydroDesc}}" loading="{{_hydroLoading}}"></hydrolysis-analyzer>
     <iron-ajax id="ajax" url="[[docSrc]]" handle-as="json" on-response="_handleAjaxResponse" on-error="_handleError"></iron-ajax>
 
-    <paper-header-panel id="headerPanel" mode="[[scrollMode]]">
+    <paper-header-panel id="headerPanel" mode="waterfall" shadow="true">
       <paper-toolbar catalog-hidden>
 
         <iron-selector attr-for-selected="view" selected="{{view}}" id="links" hidden$="[[!docDemos.length]]">
@@ -721,7 +722,7 @@ documentation page including demos (if available).
         },
 
         _demoView: function(path) {
-          console.log('demo path', path);
+          //console.log('demo path', path);
           return "demo:" + path;
         },
 
