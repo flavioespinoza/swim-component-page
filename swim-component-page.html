@@ -194,31 +194,40 @@ documentation page including demos (if available).
     <iron-ajax id="ajax" url="[[docSrc]]" handle-as="json" on-response="_handleAjaxResponse" on-error="_handleError"></iron-ajax>
 
     <paper-header-panel id="headerPanel" mode="waterfall" shadow="true">
+
       <paper-toolbar catalog-hidden>
-
         <iron-selector attr-for-selected="view" selected="{{view}}" id="links" hidden$="[[!docDemos.length]]">
-
           <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
-
           <a view="[[_demoView(docDemos.0.path)]]"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></a>
-
         </iron-selector>
       </paper-toolbar>
+
       <div id="content">
         <iron-selector id="view" selected="[[_viewType(view)]]" attr-for-selected="id">
+
           <div id="docs">
             <div id="catalog-heading" catalog-only>
               <h2><span>[[active]]</span> <span class="version" hidden$="[[!version]]">[[version]]</span></h2>
             </div>
-            <iron-doc-viewer prefix="[[_fragmentPrefix]]" id="viewer" descriptor="{{_activeDescriptor}}"
-                             on-iron-doc-viewer-component-selected="_handleComponentSelectedEvent"></iron-doc-viewer>
+
+            <iron-doc-viewer prefix="[[_fragmentPrefix]]"
+                             id="viewer"
+                             descriptor="{{_activeDescriptor}}"
+                             on-iron-doc-viewer-component-selected="_handleComponentSelectedEvent">
+            </iron-doc-viewer>
+
             <div id="nodocs" hidden$="[[_activeDescriptor]]" class="no-docs">
               No documentation found.
             </div>
+
           </div>
-          <div id="demo"></div>
+
+          <div id="demo">
+            <!-- Demo renderderd here. -->
+          </div>
         </iron-selector>
       </div>
+
     </paper-header-panel>
   </template>
 
